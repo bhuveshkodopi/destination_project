@@ -1,0 +1,100 @@
+<% layout('layouts/boilerplate') %>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>owned by <%= data.owner.username %></p>
+                    <h3><%= data.title %></h3>
+                    <p class="text-muted"><%= data.location %>, <%= data.country %></p>
+                    <p><%= data.description %></p>
+                    <h4 class="text-primary">&#8377;<%= data.price.toLocaleString("en-IN") %> <span class="text-muted">/ night</span></h4>
+                    <% if(curruser && curruser._id.equals(data.owner._id)) {%>
+                    <div class="mt-4">
+                        <a href="/listings/<%= data._id %>/edit" class="btn btn-primary me-2">Edit</a>
+                        <form action="/listings/<%= data._id %>?_method=DELETE" method="post" style="display: inline;" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="col-md-4">
+                    <% if(data.image) { %>
+                        <img src="<%= data.image.url || data.image %>" class="img-fluid rounded shadow" alt="<%= data.title %>">
+                    <% } else { %>
+                        <div class="img-fluid rounded shadow d-flex align-items-center justify-content-center" style="height: 300px; background: #f8f9fa;">
+                            <i class="fa-solid fa-image fa-3x text-muted"></i>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            
+            <%if(curruser) {%>
+            <!-- Review Form Section -->
+            <div class="row mt-5">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Leave a Review</h3>
+                            <form action="/listings/<%= data._id %>/reviews" method="post">
+                                <div class="mb-3">
+                                    <label for="rating" class="form-label">Rating (1-5 stars)</label>
+                                    <div class="d-flex gap-2">
+                                        <% for(let i = 1; i <= 5; i++) { %>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="rating" id="star<%= i %>" value="<%= i %>" required>
+                                                <label class="form-check-label" for="star<%= i %>">
+                                                    <%= i %>
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="comment" class="form-label">Comment</label>
+                                    <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+                        <!-- Reviews Display Section -->
+            <% if(data.reviews && data.reviews.length > 0) { %>
+                <div class="row mt-4">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>Reviews</h4>
+                                <ul class="list-group list-group-flush">
+                                    <% data.reviews.forEach(review => { %>
+                                        <li class="list-group-item">
+                                            <div class="d-flex justify-content-between align-items-start">
+                                                <div>
+                                                    <p class="mb-1"><%= review.comment %></p>
+                                                    <small class="text-muted">By <%= review.author ? review.author.username : 'Anonymous' %></small><br>
+                                                    <small class="text-muted">Rating: <%= review.rating %>/5</small>
+                                                </div>
+                                                <div class="d-flex align-items-center gap-2">
+                                                    <small class="text-muted">
+                                                        <%= review.createdAt.toLocaleDateString() %>
+                                                    </small>
+                                                    <form action="/listings/<%= data._id %>/reviews/<%= review._id %>?_method=DELETE" method="post" style="display: inline;">
+                                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <% }) %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+            
+        </div>
+    </body>

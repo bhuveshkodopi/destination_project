@@ -1,0 +1,151 @@
+body {
+    background-color: pink;
+}
+.navbar {
+    height : auto;
+    min-height: 5rem;
+    z-index: 1000;
+}
+
+.fa-compass {
+    font-size: 2rem;
+    color: #fe424d;
+}
+.nav-link {
+    color : #222222 !important;
+    margin: 0 10px;
+}
+
+.container {
+    padding-top: 6rem;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.main-content {
+    min-height: calc(100vh - 10rem);
+    padding-bottom: 2rem;
+}
+
+footer {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.f-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.f-info-socials i {
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    color: #6c757d;
+}
+
+.f-info-brand {
+    font-weight: bold;
+    color: #495057;
+}
+
+.f-info-links a {
+    color: #6c757d;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.f-info-links a:hover {
+    color: #007bff;
+}
+
+.card {
+    border: none !important;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    height: 20rem !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.card-text p {
+    font-weight: 400;
+    color: black !important;
+}
+
+.card-title {
+    color: black !important;
+}
+
+.price-text {
+    color: black !important;
+}
+
+.text-decoration-none {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.text-decoration-none:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+/* Responsive cards */
+@media (max-width: 1200px) {
+    .card {
+        width: 18rem !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .card {
+        width: 16rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100% !important;
+        margin-bottom: 1.5rem;
+    }
+    
+    .card-img-top {
+        height: 15rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .row {
+        gap: 1rem !important;
+    }
+    
+    .card {
+        width: 100% !important;
+    }
+}

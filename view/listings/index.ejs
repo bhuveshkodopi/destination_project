@@ -1,0 +1,73 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WanderLust</title>
+  </head> -->
+<% layout('layouts/boilerplate') %>
+
+    <body>
+
+        <div class="categories-section mb-4">
+            <h3>Explore Categories</h3>
+            <div class="d-flex flex-wrap gap-3">
+                <a href="/listings?category=trending" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-fire"></i> Trending
+                </a>
+                <a href="/listings?category=rooms" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-bed"></i> Rooms
+                </a>
+                <a href="/listings?category=iconic-cities" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-city"></i> Iconic Cities
+                </a>
+                <a href="/listings?category=mountains" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-mountain"></i> Mountains
+                </a>
+                <a href="/listings?category=castles" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-chess-rook"></i> Castles
+                </a>
+                <a href="/listings?category=amazing-pools" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-swimming-pool"></i> Amazing Pools
+                </a>
+                <a href="/listings?category=camping" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-campground"></i> Camping
+                </a>
+                <a href="/listings?category=farms" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-tractor"></i> Farms
+                </a>
+                <a href="/listings?category=arctic" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-snowflake"></i> Arctic
+                </a>
+                <a href="/listings" class="btn btn-secondary">
+                    <i class="fa-solid fa-border-all"></i> All Listings
+                </a>
+            </div>
+        </div>
+
+        <h3>All Listings</h3>
+
+        <div class="row row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 g-4">
+            <% for(let listing of data) { %>
+                <a href="/listings/<%= listing._id %>" class="listing-link">
+                <div class="card col" style="width: 20rem;">
+                    <% if(listing.image) { %>
+                        <img src="<%= listing.image.url || listing.image %>" class="card-img-top" alt="listing_img" style="height: 20rem;">
+                    <% } else { %>
+                        <div class="card-img-top placeholder" style="height: 20rem; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-image fa-3x"></i>
+                        </div>
+                    <% } %>
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <%= listing.title %>
+                        </h6>
+                        <p class="card-text price-text"> &#8377;<%= listing.price ? listing.price.toLocaleString("en-IN") : "0" %> / night </p>
+                    </div>
+                </div>
+                </a>
+                <% } %>
+        </div>
+
+    </body>
+    <!-- </html> -->
