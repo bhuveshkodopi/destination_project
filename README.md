@@ -1,3 +1,3 @@
 # Destination Project
 
-This project is about destination
+This project is about destinations
